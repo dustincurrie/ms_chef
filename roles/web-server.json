@@ -1,5 +1,7 @@
 {
-  "name": "webserver",
+  "name": "web-server",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
   "default_attributes": {
     "apache2": {
       "listen_ports": [
@@ -13,7 +15,7 @@
       "max_children": "50"
     }
   },
-  "json_class": "Chef::Role",
+  "description": "The base role for systems that serve HTTP traffic",
   "run_list": [
     "recipe[apache2]",
     "recipe[apache2::mod_ssl]",
@@ -33,7 +35,5 @@
     "recipe[php::module_memcache]",
     "recipe[php::module_mysql]",
     "recipe[php::pear]"
-  ],
-  "description": "The base role for systems that serve HTTP traffic",
-  "chef_type": "role"
+  ]
 }
