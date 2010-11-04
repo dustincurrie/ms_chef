@@ -11,6 +11,28 @@
   "description": "The base role for data base servers",
   "chef_type": "role",
   "override_attributes": {
-
+    "mysql": { 
+      "tunable": {
+        "query_cache_size": "40M", //This is about as much as we are going to want
+        "key_buffer_size": "20M", //Settings this to something reasonable for temp tables
+        "thread_stack": "128K",
+        "join_buffer_size": "512K",
+        "read_buffer_size": "512K",
+        "read_rnd_buffer_size": "512K",
+        "sort_buffer_size": "512K",
+        "table_cache": "2500",
+        "thread_cache_size": "200",
+        "max_allowed_packet": "100M",
+        "thread_stack": "128K",
+        "query_cache_limit": "5M",
+        "query_cache_min_res_unit": "1024",
+        "max_connect_errors": "9999999",
+        "wait_timeout": "600",
+        "interactive_timeout": "600",
+        "log_queries_not_using_indexes": "0",
+        "port": " 3306",
+        "datadir": " /var/lib/mysql"
+      }
+    }
   }
 }
