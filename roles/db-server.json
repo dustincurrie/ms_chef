@@ -1,7 +1,6 @@
 {
   "name": "dbserver",
   "default_attributes": {
-
   },
   "json_class": "Chef::Role",
   "recipes": [
@@ -12,14 +11,17 @@
   "chef_type": "role",
   "override_attributes": {
     "mysql": { 
+      "server_root_password": "blah"
       "tunable": {
-        "query_cache_size": "40M", //This is about as much as we are going to want
+        "query_cache_size": "128M", 
         "key_buffer_size": "20M", //Settings this to something reasonable for temp tables
         "thread_stack": "128K",
-        "join_buffer_size": "512K",
+        "join_buffer_size": "4M",
         "read_buffer_size": "512K",
-        "read_rnd_buffer_size": "512K",
-        "sort_buffer_size": "512K",
+        "read_rnd_buffer_size": "4M",
+        "sort_buffer_size": "4M",
+        "tmp_table_size": "92M",
+        "max_heap_table_size": "92M",
         "table_cache": "2500",
         "thread_cache_size": "200",
         "max_allowed_packet": "100M",
@@ -30,8 +32,14 @@
         "wait_timeout": "600",
         "interactive_timeout": "600",
         "log_queries_not_using_indexes": "0",
-        "port": " 3306",
-        "datadir": " /var/lib/mysql"
+        "default_table_type": "INNODB",
+        "innodb_buffer_pool_size": "8G",
+        "innodb_data_file_path": "ibdata1:10M:autoextend",
+        "innodb_flush_method": "O_DIRECT",
+        "innodb_log_file_size": "200M",
+        "innodb_log_files_in_group": "3",
+        "innodb_log_buffer_size": "8M",
+        "innodb_flush_log_at_trx_commit": "2"
       }
     }
   }
